@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+
+<!-- Adapted from Qihong Lu's site (https://github.com/qihongl/qihongl.github.io). -->
+
+<head>
+  <meta charset="utf-8">
+  <title>Xian Li | Demo</title>
+  <link rel="stylesheet" href="stylesheets/styles.css">
+  <meta name="viewport" content="width=device-width">
+</head>
+
+<body>
+  <div class="wrapper">
+
+    <header>
+      <h1>Xian Li</h1>
+      <br>
+      <p class="view"><h4><a href="index.html">Home</a></h4></p>
+      <p class="view"><h4><a href="research.html">Research</a></h4></p>
+      <p class="view"><h4><a href="teaching.html">Teaching</a></h4></p>
+      <p class="view"><h4>Demo</h4></p>
+      <p class="view"><a href="docs/CV_XianLi_2026-10-12_v6.pdf" target="_blank">CV (PDF)</a></p>
+      <br><br>
+      <p class="view">
+        <a href="https://scholar.google.com/citations?user=cab6cSQAAAAJ&hl=en&oi=ao" title="Google Scholar">
+          <img src="imgs/logo/google-scholar.png" alt="Google Scholar" width="40px"></a>
+        <a href="https://github.com/xianNeuro" title="GitHub">
+          <img src="imgs/logo/github.svg" alt="GitHub" width="40px"></a>
+        <a href="mailto:xianl.cogneuro@gmail.com" title="Email">
+          <img src="imgs/logo/email.png" alt="Email" width="40px"></a>
+      </p>
+    </header>
+
+    <section>
+
+
+      <h3>Choose-your-own-adventure paradigm demo</h3>
+
+      <p class="page-lead">
+        To study agency in a naturalistic setting, we developed the choose-your-own-adventure (CYOA) paradigm.
+        A story is presented one to three sentences at a time. At choice points, two options are shown as
+        buttons; the story unfolds according to the option you pick.
+      </p>
+
+      <div class="project project-noimg">
+        <h4 class="project-title">How to read</h4>
+        <ul class="compact">
+          <li>Read the sentence in the box below.</li>
+          <li>Press <b>Enter</b> to go to the next sentence (anywhere on this page).</li>
+          <li>At a choice point, press Enter to reveal the two options, then click the one you want.</li>
+          <li>Keep reading until "The end."</li>
+        </ul>
+        <p class="demo-note"><b>A sense of agency.</b> How would the story have unfolded had you chosen
+          differently at a choice point? Press <b>Restart</b> to read it again from the beginning. Nothing you do
+          here is recorded or sent anywhere.</p>
+      </div>
+
+      <div class="demo-toolbar">
+        <button type="button" id="cyoa-restart" class="demo-restart" title="Return to the first sentence">&#8635; Restart</button>
+        <span class="demo-toolbar-hint">returns to the first sentence</span>
+      </div>
+      <iframe id="cyoa-frame" class="demo-frame" src="demo/cyoa_prac_free.html" title="Choose-your-own-adventure demo"></iframe>
+
+      <p>
+        <small>
+          If nothing happens when you press Enter, click once inside the box and try again.
+          <a href="demo/cyoa_prac_free.html" target="_blank">Open the demo in its own tab</a>.
+          The demo loads Bootstrap, jQuery, and SortableJS from public content delivery networks, so it needs network access.
+        </small>
+      </p>
+
+    </section>
+
+  </div>
+  <script src="javascripts/scale.fix.js"></script>
+  <script>
+    // Restart button: reload the embedded demo (its state lives only in the frame) and give it focus again.
+    document.getElementById('cyoa-restart').addEventListener('click', function () {
+      var frame = document.getElementById('cyoa-frame');
+      frame.src = frame.getAttribute('src');
+      frame.focus();
+    });
+    // Forward Enter presses to the embedded demo. The demo listens for this message (see demo/cyoa_prac_free.html),
+    // which works whether the page is served over http or opened from disk.
+    (function () {
+      var frame = document.getElementById('cyoa-frame');
+      function focusFrame() { try { frame.focus(); } catch (e) {} }
+      frame.addEventListener('load', focusFrame);
+      frame.addEventListener('mouseenter', focusFrame);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.keyCode === 13) {
+          e.preventDefault();
+          frame.contentWindow.postMessage('cyoa-enter', '*');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

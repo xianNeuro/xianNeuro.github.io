@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8"/>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+<!-- Latest Sortable--> 
+<script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-sortablejs@latest/jquery-sortable.js"></script>
+
+<style>
+
+input[type=button] {
+    font-family: arial;
+}
+body {
+    font-family: arial;
+}
+.glyphicon-move {
+  cursor: move;
+  cursor: -webkit-grabbing;
+}
+.spr {
+  /* website copy: scale the sentence to the frame width so long scenes stay inside a 560 px iframe
+     (worst case 235 characters at 88% width, ~1.55 line height). The original experiment files keep 25px. */
+  font-size: clamp(15px, 3.6vw + 4px, 25px);
+  z-index: 900;
+}
+#Response_Label1 {
+  color: gray;
+  text-align: center;
+  font-size: clamp(14px, 3vw + 3px, 25px) !important; /* website copy: overrides the inline 25px */
+  font-style: italic;
+  line-height: 1.1em;
+  margin: 0;
+  position: absolute;
+  top: 15%;
+  left: 25%;
+  transform: translate(-50%, -50%)
+}
+#spr_text {
+  text-align: left;
+  font-size: 20pt;
+  line-height: 1.55;
+  margin: 0;
+  width: 88%;
+  max-width: 760px;
+  max-height: 62%;
+  overflow-y: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+}
+.list-group{
+  display: inline-block;
+  cursor: pointer;
+  position: fixed;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 950;
+}
+#Button_1 {
+  background-color: steelblue;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: clamp(15px, 2.6vw + 4px, 20px); /* website copy */
+  margin: 4px 2px;
+  cursor: pointer;
+}
+#Button_2 {
+  background-color: steelblue;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: clamp(15px, 2.6vw + 4px, 20px); /* website copy */
+  margin: 4px 2px;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<!-- Simple List: set up buttons -->
+<div id="simpleList" class="list-group">
+  <p data-id="r1" id="Button_1" class="col-1" value=1 onclick="recordValue(1)">#1</p>
+  <p data-id="r2" id="Button_2" class="col-2" value=1 onclick="recordValue(2)">#2</p>
+</div>
+
+<spr>
+  <div id="spr_text" class="stim-div">
+    <p id = "spr_sentence" class = "spr">Sentence</p>
+    <br>
+    <br>
+  </div>
+</spr>
+
+<span id="Response_Label1" style='font-size:25px;'>Choice text</span>
+
+<!-- Story content -->
+<script>
+var story = {
+  "row": [
+    {
+      "Scene_lab": 1,
+      "Story": "Astronomers have announced that a massive comet is rushing towards the Earth. It’s all over the news that it is likely to destroy more than half of the Earth and render the other half uninhabitable.",
+      "Choice": "N",
+      "Response_1": "Next",
+      "Response_2": "NA",
+      "Outcome_1": 2,
+      "Outcome_2": "NA",
+      "Section": 1,
+      "Storyline": 0,
+      "NumChar": 108
+    },
+    {
+      "Scene_lab": 2,
+      "Story": "Looking at the ticket in your hand, you are struggling with a difficult decision: whether to board the experimental-phase untested spaceship to escape the Earth or sell your ticket for a high price and stay on Earth to enjoy the money.",
+      "Choice": "Y",
+      "Response_1": "You board the spaceship.",
+      "Response_2": "You stay on earth.",
+      "Outcome_1": 3,
+      "Outcome_2": 18,
+      "Section": 1,
+      "Storyline": 0,
+      "NumChar": 111
+    },
+    {
+      "Scene_lab": 3,
+      "Story": "There’s a risk that this experimental spaceship won’t function properly, but it’s going to be an epic adventure!",
+      "Choice": "N",
+      "Response_1": "Next",
+      "Response_2": "NA",
+      "Outcome_1": 4,
+      "Outcome_2": "NA",
+      "Section": 1,
+      "Storyline": 0,
+      "NumChar": 25
+    },
+    {
+      "Scene_lab": 4,
+      "Story": "As you board, you notice that there are only a few seats left: either in the front facing the windows, or at the back next to the airlock.",
+      "Choice": "Y",
+      "Response_1": "You sit in the front.",
+      "Response_2": "You sit in the back.",
+      "Outcome_1": 5,
+      "Outcome_2": 12,
+      "Section": 1,
+      "Storyline": 0,
+      "NumChar": 91
+    },
+    {
+      "Scene_lab": 5,
+      "Story": "You walk up towards the front and get seated—nothing is more important than a grand space view!",
+      "Choice": "N",
+      "Response_1": "Next",
+      "Response_2": "NA",
+      "Outcome_1": 6,
+      "Outcome_2": "NA",
+      "Section": 1,
+      "Storyline": 0,
+      "NumChar": 125
+    },
+    {
+      "Scene_lab": 6,
+      "Story": "After the safety check, the launch, the thrust, you are finally in space. You suddenly notice a spot rushing towards you!",
+      "Choice": "Y",
+      "Response_1": "You yell for the commander’s attention",
+      "Response_2": "You check with other passengers",
+      "Outcome_1": 7,
+      "Outcome_2": 10,
+      "Section": 1,
+      "Storyline": 0,
+      "NumChar": 45
+    },
+    {
+      "Scene_lab": 7,
+      "Story": "You shout out “A meteor is going to hit us!!” causing great panic among the passengers. Several crew members rush to you and see the rapidly growing spot.",
+      "Choice": "N",
+      "Response_1": "Next",
+      "Response_2": "NA",
+      "Outcome_1": 8,
+      "Outcome_2": "NA",
+      "Section": 1,
+      "Storyline": 0,
+      "NumChar": 53
+    },
+    {
+      "Scene_lab": 8,
+      "Story": "Thanks to you, the ship is able to steer slightly away, saving at least half of the people on board. Unfortunately, sitting right at the front, you are not among the survivors.",
+      "Choice": "N",
+      "Response_1": "Next",
+      "Response_2": "NA",
+      "Outcome_1": 9,
+      "Outcome_2": "NA",
+      "Section": 1,
+      "Storyline": 0,
+      "NumChar": 48
+    },
+    {
+      "Scene_lab": 9,
+      "Story": "The end.",
+      "Choice": "N",
+      "Response_1": "NA.",
+      "Response_2": "NA",
+      "Outcome_1": 9,
+      "Outcome_2": 9,
+      "Section": 1,
+      "Storyline": 0,
+      "NumChar": 8
+    },
+    {
+      "Scene_lab": 10,
+      "Story": "You look around at others, but no one else seems to have noticed this yet. So, you point at the gradually enlarging spot and ask the person next to you whether it’s just your imagination…",
+      "Choice": "N",
+      "Response_1": "Next",
+      "Response_2": "NA",
+      "Outcome_1": 11,
+      "Outcome_2": "NA",
+      "Section": 1,
+      "Storyline": 0,
+      "NumChar": 56
+    },
+    {
+      "Scene_lab": 11,
+      "Story": "Clearly not. You both start yelling, but before any crew members can come to check, the meteor crashes into the spaceship—that’s the last thing you see.",
+      "Choice": "N",
+      "Response_1": "Next",
+      "Response_2": "NA",
+      "Outcome_1": 9,
+      "Outcome_2": "NA",
+      "Section": 1,
+      "Storyline": 0,
+      "NumChar": 32
+    },
+    {
+      "Scene_lab": 12,
+      "Story": "Sitting next to the airlock makes you feel safe, because this is where the evacuation pods are docked.",
+      "Choice": "N",
+      "Response_1": "Next",
+      "Response_2": "NA",
+      "Outcome_1": 13,
+      "Outcome_2": "NA",
+      "Section": 1,
+      "Storyline": 0,
+      "NumChar": 167
+    },
+    {
+      "Scene_lab": 13,
+      "Story": "Just as the spaceship enters the space, you hear yelling from the front. It sounds something like: “A meteor is going to hit us!!”",
+      "Choice": "Y",
+      "Response_1": "You rush to the evacuation ship",
+      "Response_2": "You go to check with the crew",
+      "Outcome_1": 14,
+      "Outcome_2": 16,
+      "Section": 1,
+      "Storyline": 0,
+      "NumChar": 48
+    },
+    {
+      "Scene_lab": 14,
+      "Story": "You immediately rush towards the back, hop into an evacuation pod, and press the launch button.",
+      "Choice": "N",
+      "Response_1": "Next",
+      "Response_2": "NA",
+      "Outcome_1": 15,
+      "Outcome_2": "NA",
+      "Section": 1,
+      "Storyline": 12,
+      "NumChar": 81
+    },
+    {
+      "Scene_lab": 15,
+      "Story": "You speed away from the spaceship. From a distance you see the explosion of the spaceship. Now, you just have to get back to Earth…",
+      "Choice": "N",
+      "Response_1": "Next",
+      "Response_2": "NA",
+      "Outcome_1": 9,
+      "Outcome_2": "NA",
+      "Section": 1,
+      "Storyline": 1,
+      "NumChar": 13
+    },
+    {
+      "Scene_lab": 16,
+      "Story": "You unbuckle yourself and look around for directions. Suddenly you see several crew members rushing towards the front.",
+      "Choice": "N",
+      "Response_1": "Next",
+      "Response_2": "NA",
+      "Outcome_1": 17,
+      "Outcome_2": "NA",
+      "Section": 1,
+      "Storyline": 1,
+      "NumChar": 62
+    },
+    {
+      "Scene_lab": 17,
+      "Story": "Something is definitely not right! But before you can do anything else, the meteor crashes into the ship—that’s the last thing you see.",
+      "Choice": "N",
+      "Response_1": "Next",
+      "Response_2": "NA",
+      "Outcome_1": 9,
+      "Outcome_2": "NA",
+      "Section": 1,
+      "Storyline": 1,
+      "NumChar": 46
+    },
+    {
+      "Scene_lab": 18,
+      "Story": "There are so many comets reported as threatening the earth every few years, but here we are, alive and kicking, aren’t we?",
+      "Choice": "N",
+      "Response_1": "Next",
+      "Response_2": "NA",
+      "Outcome_1": 19,
+      "Outcome_2": "NA",
+      "Section": 1,
+      "Storyline": 1,
+      "NumChar": 70
+    },
+    {
+      "Scene_lab": 19,
+      "Story": "You list the ticket online for auction, and the price goes up to 65 million dollars before being sold—you are a millionaire now!",
+      "Choice": "Y",
+      "Response_1": "Time to travel the world.",
+      "Response_2": "Visit the spaceship factory.",
+      "Outcome_1": 20,
+      "Outcome_2": 28,
+      "Section": 1,
+      "Storyline": 1,
+      "NumChar": 48
+    },
+    {
+      "Scene_lab": 20,
+      "Story": "You never had the chance to travel much or buy expensive things, but you can do so now!",
+      "Choice": "N",
+      "Response_1": "Next",
+      "Response_2": "NA",
+      "Outcome_1": 21,
+      "Outcome_2": "NA",
+      "Section": 1,
+      "Storyline": 1,
+      "NumChar": 76
+    },
+    {
+      "Scene_lab": 21,
+      "Story": "You want to travel somewhere cool and fun! A fancy race car would also go well with this epic journey.",
+      "Choice": "Y",
+      "Response_1": "You shop for first-class flights",
+      "Response_2": "You shop for race car first",
+      "Outcome_1": 22,
+      "Outcome_2": 25,
+      "Section": 1,
+      "Storyline": 1,
+      "NumChar": 44
+    },
+    {
+      "Scene_lab": 22,
+      "Story": "Since you have all the money you need, why not search from the most expensive flights?",
+      "Choice": "N",
+      "Response_1": "Next",
+      "Response_2": "NA",
+      "Outcome_1": 23,
+      "Outcome_2": "NA",
+      "Section": 1,
+      "Storyline": 1,
+      "NumChar": 24
+    },
+    {
+      "Scene_lab": 23,
+      "Story": "After some brief searching, you book a next day flight to Dubai and enjoyed a wonderful first-class experience.",
+      "Choice": "N",
+      "Response_1": "Next",
+      "Response_2": "NA",
+      "Outcome_1": 24,
+      "Outcome_2": "NA",
+      "Section": 1,
+      "Storyline": 1,
+      "NumChar": 24
+    },
+    {
+      "Scene_lab": 24,
+      "Story": "As you are checking in to the world’s only 7-star hotel, you notice the model spaceship at the lobby—the current era’s new fashion. Looking good!",
+      "Choice": "N",
+      "Response_1": "Next",
+      "Response_2": "NA",
+      "Outcome_1": 9,
+      "Outcome_2": "NA",
+      "Section": 1,
+      "Storyline": 1,
+      "NumChar": 24
+    },
+    {
+      "Scene_lab": 25,
+      "Story": "You go the car dealership and find that a Porsche costs only half of its original price due to the whole comet news thing—brilliant!",
+      "Choice": "N",
+      "Response_1": "Next",
+      "Response_2": "NA",
+      "Outcome_1": 26,
+      "Outcome_2": "NA",
+      "Section": 1,
+      "Storyline": 1,
+      "NumChar": 24
+    },
+    {
+      "Scene_lab": 26,
+      "Story": "Driving your new Porsche, you go to the CBD and start shopping like crazy. This is the life of your dreams!",
+      "Choice": "N",
+      "Response_1": "Next",
+      "Response_2": "NA",
+      "Outcome_1": 27,
+      "Outcome_2": "NA",
+      "Section": 1,
+      "Storyline": 1,
+      "NumChar": 24
+    },
+    {
+      "Scene_lab": 27,
+      "Story": "As you pass by a television playing CNN, you find that the news of comets and spaceship trials doesn’t seem to bother you anymore.",
+      "Choice": "N",
+      "Response_1": "Next",
+      "Response_2": "NA",
+      "Outcome_1": 9,
+      "Outcome_2": "NA",
+      "Section": 1,
+      "Storyline": 1,
+      "NumChar": 24
+    },
+    {
+      "Scene_lab": 28,
+      "Story": "Although you won’t be boarding the spaceship, the ticket to visit the spaceship factory is only 3 million dollars.",
+      "Choice": "N",
+      "Response_1": "Next",
+      "Response_2": "NA",
+      "Outcome_1": 29,
+      "Outcome_2": "NA",
+      "Section": 1,
+      "Storyline": 1,
+      "NumChar": 24
+    },
+    {
+      "Scene_lab": 29,
+      "Story": "You can also get an insider-guided 3-day tour on the human evacuation project ‘Noah’ for 30 million dollars.",
+      "Choice": "Y",
+      "Response_1": "You pay for just the spaceship factory tour",
+      "Response_2": "You pay for both the factory and the tour of Project Noah",
+      "Outcome_1": 30,
+      "Outcome_2": 33,
+      "Section": 1,
+      "Storyline": 1,
+      "NumChar": 24
+    },
+    {
+      "Scene_lab": 30,
+      "Story": "The visit is limited to 2 hours, but clearly, it’s worth it—you can’t help but think so as you walk past different models of amazing spaceships.",
+      "Choice": "N",
+      "Response_1": "Next",
+      "Response_2": "NA",
+      "Outcome_1": 31,
+      "Outcome_2": "NA",
+      "Section": 1,
+      "Storyline": 1,
+      "NumChar": 24
+    },
+    {
+      "Scene_lab": 31,
+      "Story": "As you wander through the tour areas, you hear one worker whisper to another about some failed mission.",
+      "Choice": "N",
+      "Response_1": "Next",
+      "Response_2": "NA",
+      "Outcome_1": 32,
+      "Outcome_2": "NA",
+      "Section": 1,
+      "Storyline": 1,
+      "NumChar": 24
+    },
+    {
+      "Scene_lab": 32,
+      "Story": "You hope that’s not the launched spaceship you had the ticket for—after all, some dude who paid you 65 million dollars for it was probably up there.",
+      "Choice": "N",
+      "Response_1": "Next",
+      "Response_2": "NA",
+      "Outcome_1": 9,
+      "Outcome_2": "NA",
+      "Section": 1,
+      "Storyline": 1,
+      "NumChar": 24
+    },
+    {
+      "Scene_lab": 33,
+      "Story": "Wicked cool! They send out special aircraft that looked like a futuristic spaceship model just to pick you up!",
+      "Choice": "N",
+      "Response_1": "Next",
+      "Response_2": "NA",
+      "Outcome_1": 34,
+      "Outcome_2": "NA",
+      "Section": 1,
+      "Storyline": 1,
+      "NumChar": 24
+    },
+    {
+      "Scene_lab": 34,
+      "Story": "The tour includes amazing details on the human evacuation plan, including some yet-to-be published insider news on the recently crashed spaceship.",
+      "Choice": "N",
+      "Response_1": "Next",
+      "Response_2": "NA",
+      "Outcome_1": 35,
+      "Outcome_2": "NA",
+      "Section": 1,
+      "Storyline": 1,
+      "NumChar": 24
+    },
+    {
+      "Scene_lab": 35,
+      "Story": "That was your spaceship! Thank god you are here listening to this senior executive trying to talk you into investing billions in the new model with advanced protection mechanisms, instead of aboard that ship.",
+      "Choice": "N",
+      "Response_1": "Next",
+      "Response_2": "NA",
+      "Outcome_1": 9,
+      "Outcome_2": "NA",
+      "Section": 1,
+      "Storyline": 1,
+      "NumChar": 24
+    }
+  ]
+};
+
+
+// Define necessary variables
+var index = 0;
+var story_path = [];
+var story_text = [];
+var choice_click = 0;
+var choice_vec = [];
+var response_label = "";
+var response_text = "";
+var key_flag = 0;
+var sl = 0;
+var setsplit = [96,322,551,593,644];//scenes where sec2-6 split into sl1/2/3 based on choices in sec1
+var ending = 1; //half subj to 1; half to 2
+var endsplit = [763]; //this is the point to go into 1 of 2 different endings
+
+function recordValue(value) {
+    choice_click = value
+    SPR_buttonRecorder()
+}
+
+//add event listener
+document.addEventListener('keydown', SPR_keyRecorder);
+//when embedded in an iframe (website/demo.html), the parent page forwards Enter presses as a message,
+//so the reader does not have to click inside the frame first
+window.addEventListener('message', function (ev) {
+  if (ev.data === 'cyoa-enter') { SPR_keyRecorder({ keyCode: 13, key: 'Enter' }); }
+});
+
+//key press: progress at non-choice points with enter key (progress story + save data)
+function SPR_keyRecorder(e) {
+  if (e.keyCode == 13 || e.key == 'Enter') { //if enter was pressed (keyCode for old browsers, key for new ones)
+    //check if enter has been pressed already
+    if (key_flag==0){
+      key_flag = 1; //set key_flag to 1
+      setTimeout(function () { //set a small delay before the next key-press to proceed to the next sentence
+        //reset key_flag for the next enter-press
+        key_flag = 0; 
+        //save current scene label and current text into separate variables
+        curent_position = story.row[index].Scene_lab; // save current scene label
+        curent_text = story.row[index].Story; // save current text
+        story_path.push(curent_position); // append current scene position to the story_path variable
+        story_text.push(curent_text); // append current text position to the story_text variable
+        //test if CURRENT scene is a choice scene or not 
+        if (story.row[index].Choice=="N") { //if this is not a choice point
+          //test if at end of story or not
+          if (story.row[index].Response_1 != "End") { //if not at end of story
+            //update index
+            if (setsplit.includes(story.row[index].Scene_lab)) { //split into a storyline determined by subject's previous choice
+              if (story_path.includes('13_2')){sl=3 //having chosen _2 for 13 goes onto storyline3
+              }else if(story_path.includes('14_2')){sl=2 //having chosen _2 for 14 goes onto storyline2
+              }else if(story_path.includes('14_1')){sl=1 //having chosen _1 for 14 goes onto storyline1
+              };
+              index = story.row[index].Outcome_1[sl-1]-1
+            }else if (endsplit.includes(story.row[index].Scene_lab)) {
+              index = story.row[index].Outcome_1[ending-1]-1
+            }else{ //proceed to the next scene          
+              index = story.row[index].Outcome_1-1 //update index based on Outcome_1  
+            };
+            //update story by index
+            document.getElementById('spr_sentence').innerHTML = story.row[index].Story; 
+            //test if the updated scene is a choice scene or not
+            if (story.row[index].Choice=="N") { //if the updated scene is not a choice scene
+              //update element visibility
+              document.getElementById('Response_Label1').style.visibility="hidden"; //hide element
+              document.getElementById('Button_1').style.visibility="hidden"; //hide element
+              document.getElementById('Button_2').style.visibility="hidden"; //hide element
+              //update button functionality
+              document.getElementById('simpleList').style.pointerEvents="none"; //disable reordering list
+              document.getElementById('Button_1').style.pointerEvents="none"; //disable reordering list
+              document.getElementById('Button_2').style.pointerEvents="none"; //disable reordering list
+            } else if(story.row[index].Choice=="Y") { //if the updated scene is a choice scene
+              //update element visibility
+              document.getElementById('Response_Label1').style.visibility="hidden"; //hide element
+              //update button text
+              document.getElementById('Button_1').textContent = story.row[index].Response_1
+              document.getElementById('Button_2').textContent = story.row[index].Response_2
+            }//EoF: updated scene choice/not
+          } else { //if at end of story
+            document.getElementById('spr_sentence').innerHTML = "You have completed Phase 3.";
+          }
+        }  else if(story.row[index].Choice=="Y") { //if this is a choice point
+          //update element visibility
+          document.getElementById('Response_Label1').style.visibility="hidden"; //hide element
+          //update button visibility
+          document.getElementById('Button_1').style.visibility="";
+          document.getElementById('Button_2').style.visibility="";
+          //update button functionality
+          document.getElementById('simpleList').style.pointerEvents="";
+          document.getElementById('Button_1').style.pointerEvents="";
+          document.getElementById('Button_2').style.pointerEvents="";
+        } //EoF: current scene is choice/not
+      },300) //EoF: settimeout (prevents rapid enter-presses)
+    }else if (key_flag==1){ //if key has already been pressed, do nothing
+    } //EoF: enter press detect
+  } //EoF: enter press
+} //EoF: SPR_keyRecorder
+
+
+//button press: progress at choice points with button-click (progress story + save data)
+function SPR_buttonRecorder() {
+  //disable buttons
+  document.getElementById('simpleList').style.pointerEvents="none"; //disable reordering  list
+  document.getElementById('Button_1').style.pointerEvents="none"; //disable reordering list
+  document.getElementById('Button_2').style.pointerEvents="none"; //disable reordering list
+  //selected element change colours (highlight top item)
+  if (choice_click==1){
+    $("#Button_1").css("color", "black");
+    $("#Button_1").css("background-color", "white");
+    $("#Button_1").css("border", "steelblue");
+    $("#Button_1").css("border-style", "solid");
+    choice_vec.push(choice_click); 
+  } 
+  if (choice_click==2){
+    $("#Button_2").css("color", "black");
+    $("#Button_2").css("background-color", "white");
+    $("#Button_2").css("border", "steelblue");
+    $("#Button_2").css("border-style", "solid");
+    choice_vec.push(choice_click);
+  }
+  //set timeout function
+  setTimeout(function () {
+    if (choice_click == 1){
+      //selected element return colours to original state
+      $("#Button_1").css("border-style", "none");
+      $("#Button_1").css("color", "white");
+      $("#Button_1").css("background-color", "steelblue");
+      //define response label and text
+      response_label = "_1";
+      response_text = document.getElementById('Button_1').textContent;
+      //update story
+      index = story.row[index].Outcome_1-1;
+    }else if(choice_click==2){ //second option
+      //selected element return colours to original state
+      $("#Button_2").css("border-style", "none");
+      $("#Button_2").css("color", "white");
+      $("#Button_2").css("background-color", "steelblue");
+      //define response label and text
+      response_label = "_2";
+      response_text = document.getElementById('Button_2').textContent;
+      //update story
+      index = story.row[index].Outcome_2-1;
+    };
+    //save selected response: append to story_path and story_text
+    story_path.push(curent_position.toString().concat(response_label)); // append selected response label to the story_path variable
+    story_text.push(response_text); // append selected response text to the story_text variable
+    //update story text
+    document.getElementById('spr_sentence').innerHTML = story.row[index].Story;
+    //update choice text
+    let label_var = ""
+    document.getElementById('Response_Label1').innerHTML=label_var.concat(response_text);
+    //update choice visibility
+    document.getElementById('Response_Label1').style.visibility="";
+    //clear choice variables
+    response_label = "";
+    response_text = "";
+    //update button visibility
+    document.getElementById('Button_1').style.visibility="hidden";
+    document.getElementById('Button_2').style.visibility="hidden";
+    //update button text
+    document.getElementById('Button_1').textContent = story.row[index].Response_1
+    document.getElementById('Button_2').textContent = story.row[index].Response_2
+  },500)
+}
+
+//set story text
+document.getElementById('spr_sentence').innerHTML = story.row[index].Story;
+//set visibility
+document.getElementById('Response_Label1').style.visibility="hidden"; //hide element
+document.getElementById('Button_1').style.visibility="hidden"; //hide element
+document.getElementById('Button_2').style.visibility="hidden"; //hide element
+//set button functionality
+document.getElementById('simpleList').style.pointerEvents="none"; //disable reordering list
+document.getElementById('Button_1').style.pointerEvents="none"; //disable reordering list
+document.getElementById('Button_2').style.pointerEvents="none"; //disable reordering list
+</script>
+</html>

@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="en">
+
+<!-- Adapted from Qihong Lu's site (https://github.com/qihongl/qihongl.github.io). -->
+
+<head>
+  <meta charset="utf-8">
+  <title>Xian Li | Research</title>
+  <meta name="description" content="Research of Xian Li: how memory, choice, interruption and feeling shape naturalistic experience; the choose-your-own-adventure paradigm; and narRaters, the open-source narrative recall processing tool (github.com/xianNeuro/narRaters).">
+  <link rel="stylesheet" href="stylesheets/styles.css">
+  <meta name="viewport" content="width=device-width">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    "name": "narRaters",
+    "alternateName": "narraters",
+    "description": "narRaters (narrative + raters): open-source pipeline and web interface for processing story recalls: transcribe, segment stories into events, parse and match recall to events, and rate causal relations, with human review at every step.",
+    "codeRepository": "https://github.com/xianNeuro/narRaters",
+    "url": "https://xianneuro.github.io/narRaters/",
+    "programmingLanguage": "Python",
+    "runtimePlatform": "Python 3.10+",
+    "license": "https://github.com/xianNeuro/narRaters/blob/main/LICENSE",
+    "author": {"@type": "Person", "name": "Xian Li"},
+    "identifier": "https://doi.org/10.5281/zenodo.20486079"
+  }
+  </script>
+</head>
+
+<body>
+  <div class="wrapper">
+
+    <header>
+      <h1>Xian Li</h1>
+      <br>
+      <p class="view"><h4><a href="index.html">Home</a></h4></p>
+      <p class="view"><h4>Research</h4></p>
+      <p class="view"><h4><a href="teaching.html">Teaching</a></h4></p>
+      <p class="view"><h4><a href="demo.html">Demo</a></h4></p>
+      <p class="view"><a href="docs/CV_XianLi_2026-10-12_v6.pdf" target="_blank">CV (PDF)</a></p>
+      <br><br>
+      <p class="view">
+        <a href="https://scholar.google.com/citations?user=cab6cSQAAAAJ&hl=en&oi=ao" title="Google Scholar">
+          <img src="imgs/logo/google-scholar.png" alt="Google Scholar" width="40px"></a>
+        <a href="https://github.com/xianNeuro" title="GitHub">
+          <img src="imgs/logo/github.svg" alt="GitHub" width="40px"></a>
+        <a href="mailto:xianl.cogneuro@gmail.com" title="Email">
+          <img src="imgs/logo/email.png" alt="Email" width="40px"></a>
+      </p>
+    </header>
+
+    <section>
+
+
+      <h3>Research</h3>
+      <p class="lede">How do meaning and feeling emerge from the experiences we live through?</p>
+      <p>
+        Lived experience is not a sequence of isolated trials. It is continuous, it accumulates over a lifetime,
+        we steer it by the choices we make, and we constantly leave it and return to it. I study the emergent
+        properties of naturalistic cognition: the memories, interpretations, and feelings that arise when a mind
+        with a history meets events as they unfold. Memory research has learned to study stories and films instead
+        of word lists, but its paradigms still leave out three things that make experience lived: the person
+        chooses, the person is interrupted, and the person feels. My program puts them back.
+      </p>
+      <br>
+      <p>
+        The three branches below follow from one another. Choosing what happens next personalizes memory, which
+        makes memory look less like a record and more like a scaffold built around the person. A scaffold built
+        while events unfold has to survive the interruptions that fill every day, and the brain holds it in a form
+        that resists interference. And a scaffold, unlike a record, should shape how new events feel, which is the
+        question of my postdoctoral work. My lab uses three instruments together: naturalistic experiments
+        in which people read, listen to, or choose their way through stories; functional magnetic resonance imaging
+        (fMRI) of the default mode network, where narrative context lives at the timescale of minutes; and large
+        language models (LLMs), as annotators of experience and as a second kind of comprehender. Whether human
+        memory is a stored record or a constructed, personal scaffold also decides what AI systems that read,
+        remember, and personalize should imitate, and what they will not capture on their own.
+      </p>
+
+      <div class="branch" id="agency">
+        <h3>1. Agency: how acting on events shapes what we remember</h3>
+        <p class="branch-lead">In real life we are not passive recipients of events; we choose, and our choices
+          change what happens next. This branch asks how that sense of agency changes memory for the events themselves.</p>
+      </div>
+
+      <div class="project">
+        <h4 class="project-title">Choose your own adventure: when readers steer the story, their memories become their own</h4>
+        <figure class="project-figure">
+          <img src="imgs/proj/cyoa.png" alt="Branching story graph of the choose-your-own-adventure paradigm, with two readers' paths highlighted">
+          <figcaption>Two readers' paths (red and blue) through the branching graph of one adventure story.</figcaption>
+        </figure>
+        <div class="project-text">
+          To study agency in a naturalistic setting we built the choose-your-own-adventure (CYOA) paradigm:
+          a branching story presented a few sentences at a time, in which readers choose what happens next.
+          Comparing readers who had full, partial, or no control over the path of the same story, we found that
+          agency personalizes episodic memory: readers who chose recalled more idiosyncratic combinations of the
+          same events, and their memories were less predictable from generic sentence embeddings, rather than
+          simply better or worse. Choice did not add memory; it moved memory away from the space that a model of
+          everyone's text would predict, and toward the person. That makes memory look less like a record and more like
+          a scaffold built around the individual, and it raises the question of the next branch: how is that scaffold
+          held when experience is interrupted?
+          <br><b>Next:</b> an fMRI version of the paradigm, for which the stimuli and pipelines exist, will test whether agency
+          changes how the default mode network represents identical events; a parallel study will treat
+          language-model agents as subjects that choose their own path and recall the story, to ask whether a system
+          with agency but no body and no stakes shows the same reorganization.
+          <div class="project-links">
+            <a href="https://doi.org/10.1038/s41467-026-73907-2">paper (Nature Communications, 2026)</a>
+            <a href="https://doi.org/10.31234/osf.io/7evwj">preprint</a>
+            <a href="demo.html">try the paradigm</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="branch" id="continuity">
+        <h3>2. Continuity: how the mind keeps a thread through interruptions and wandering thoughts</h3>
+        <p class="branch-lead">A memory scaffold is built while experience unfolds, yet experience is interrupted
+          all the time, by pauses, by other people, by our own thoughts, and we pick the story back up. This branch
+          asks how the brain keeps prior mental context available across interruptions, and what happens when
+          thought runs freely.</p>
+      </div>
+
+      <div class="project">
+        <h4 class="project-title">Where was I? How the brain keeps a story alive across interruptions</h4>
+        <figure class="project-figure">
+          <img src="imgs/proj/int_web.png" alt="Three-panel cartoon: a reader absorbed in a book, interrupted, then asking where was I">
+          <figcaption>Mental continuity: an absorbed reader is interrupted, then picks the thread back up.</figcaption>
+        </figure>
+        <div class="project-text">
+          Seventy-three adults listened to fourteen-minute stories interrupted after every forty seconds by silent
+          pauses or by a competing theory-of-mind task, or heard scrambled controls. Using fMRI, we asked how the
+          brain keeps prior mental context available across interruptions. Two pathways emerged. Hippocampal
+          activity rose at each interruption onset, and the size of that rise predicted later recall, a signature
+          of indexing the epoch just ended. Independently, posterior medial cortex carried the interrupted
+          narrative as a reliable, gradually evolving pattern, an "episodic background" that persisted through the
+          pauses and even through the competing task. The persisting cortical pattern
+          was not a copy of the story pattern that preceded it: it was inverted, and the degree of inversion predicted
+          how well it persisted. If a many-minute mental context is protected by transformation rather than by
+          rehearsal, then continuity is a representational format, not an act of will.
+          <br><b>Next:</b> a large online study of interruption and resumption with a model-subject arm, whose stimuli,
+          pipelines, and archived datasets already exist; then manipulate interruption length and content
+          parametrically, image the hippocampus and posterior medial cortex at high resolution to separate the two
+          pathways, and ask whether the same protective transformation appears when the interruption is
+          self-generated, using the think-aloud paradigm below. The experiments
+          have a machine counterpart: transformers hold context by keeping it in a window, and we can ask whether
+          any system that must resume after interference converges on a transformed code.
+          <div class="project-links">
+            <a href="https://doi.org/10.64898/2026.09.04.749493">preprint (bioRxiv, 2026)</a>
+            <a href="https://doi.org/10.5281/zenodo.22260085">data and code</a>
+            <a href="https://2025.ccneuro.org/abstract_pdf/Li_2025_Neural_representations_resist_interference.pdf">CCN 2025 abstract</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project">
+        <h4 class="project-title">Thinking out loud: how memories and plans surface in the free flow of thought</h4>
+        <figure class="project-figure">
+          <img src="imgs/proj/thinkaloud.png" alt="Think-aloud paradigm: speech bubbles segmented into thought units, and five participants' thought timelines colored by category">
+          <figcaption>Ten minutes of spoken thought, segmented into units and labeled by what each thought is about (figure adapted from Su et al., 2025).</figcaption>
+        </figure>
+        <div class="project-text">
+          Interruptions also come from within. Participants verbalized their thoughts continuously in the scanner. With Dr. Hongmi Lee and colleagues, we
+          characterized the neural dynamics of spontaneous memory recall and future thinking in that continuous flow
+          of thought, and released the annotated dataset. Transitions in spontaneous thought recruit the default and control
+          networks the way external event boundaries do, which is what lets the interruption work above be extended
+          to interruptions that people generate themselves. Together, the first two branches describe a structured,
+          person-specific representation that is built while events unfold and held across interruption. The third
+          asks how it is reused to construct emotion and social meaning.
+          <div class="project-links">
+            <a href="https://www.nature.com/articles/s41467-025-61807-w">paper (Nature Communications, 2025)</a>
+            <a href="https://doi.org/10.1038/s41597-026-08414-6">dataset paper (Scientific Data, 2026)</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="branch" id="feeling">
+        <h3>3. Feeling: how memory builds social and emotional experience</h3>
+        <p class="branch-lead">If memory is a scaffold rather than a record, it should shape how new events feel.
+          Constructionist and predictive theories of emotion make exactly that claim, yet direct tests are almost
+          absent, because in ordinary stimuli the emotion of a scene cannot be separated from the scene. This is the
+          focus of my postdoctoral work at UCLA with
+          <a href="https://www.psych.ucla.edu/faculty-page/maureen-ritchey/">Dr. Maureen Ritchey</a> and
+          <a href="https://www.psych.ucla.edu/faculty-page/ajay-satpute/">Dr. Ajay Satpute</a>, which began in
+          October 2026.</p>
+      </div>
+
+      <div class="project">
+        <h4 class="project-title">Feeling the story: how memory and prediction give rise to emotion as events unfold</h4>
+        <figure class="project-figure">
+          <img src="imgs/proj/feeling-crossover.svg" alt="Crossover design: two contexts crossed with two situations; each context is negative for one situation and neutral for the other, so any emotion that later emerges must come from the conjunction that memory supplies">
+          <figcaption>The crossover design: no context and no situation is negative on its own, so emotion can arise
+            only from the pairing that memory supplies.</figcaption>
+        </figure>
+        <div class="project-text">
+          During my doctoral work I designed a paradigm that separates the emotion of a scene from the scene.
+          Encoding crosses two contexts with two situations so that each context is negative for one situation and
+          neutral for the other. Every context and every situation appears in both affective roles, so any emotion
+          that later emerges can come only from the conjunction that memory supplies. The postdoctoral work carries
+          this crossover into naturalistic social scenes: the same ambiguous scene will be encoded under different
+          installed back-stories; hippocampal and ventromedial prefrontal reinstatement of the back-story will be
+          tested as the mediator of the emotion the scene then evokes; and inter-subject pattern analyses will show
+          whether people who share a memory converge on the same interpretation. As an independent investigator I
+          will ask three things this design makes askable for the first time. Does
+          reinstated context determine the category of felt emotion, not only its intensity? Does the default mode
+          network's role across memory, social, and affective processing reflect one principle, long-timescale
+          situation-model building? And do shared memories, rather than shared traits, drive the neural alignment
+          between people who read the same scene the same way? The stakes reach beyond theory: emotion that is
+          constructed from memory is emotion that memory can change, which is the premise of every memory-based
+          clinical intervention. The design is set; the data are not yet collected.
+        </div>
+      </div>
+
+      <div class="branch" id="first-semester">
+        <h3>Where the lab starts</h3>
+        <p class="branch-lead">Three projects start in the first semester: the fMRI choose-your-own-adventure study
+          (branch 1) and a large online study of interruption and resumption with a model-subject arm (branch 2),
+          whose stimuli, pipelines, and archived datasets already exist, and the naturalistic affective crossover
+          (branch 3), whose design and stimuli will be carried over from the postdoctoral work. All three use the
+          instrument described next.</p>
+      </div>
+
+      <div class="branch" id="models">
+        <h3>The instrument: people and language models as subjects of the same science</h3>
+        <p class="branch-lead">The three branches share a method that did not exist five years ago. Language
+          models can annotate narrative experience at scale, and they can be studied as a second kind of
+          comprehender. Where models and people agree, naturalistic memory research gains tools that scale by an
+          order of magnitude; where they diverge, the divergence maps what human comprehension adds.</p>
+      </div>
+
+      <div class="project project-side">
+        <h4 class="project-title">The causal backbone of a story: what holds events together, as judged by people and by language models</h4>
+        <figure class="project-figure project-figure-small">
+          <img src="imgs/proj/causal-rater.png" alt="Icon of the Causal Rater for Story tool: an open book surrounded by linked nodes">
+        </figure>
+        <div class="project-text">
+          A long story is not a list of events but a web of causes and consequences, and that web may be what
+          memory holds on to. I measure how closely language models agree with people on the causal structure of
+          stories, and whether model-derived causal centrality
+          predicts human recall as well as human-derived centrality does. Treating the model as a rememberer, I also
+          compare the organization of its recall (compression, ordering, causal clustering, temporal contiguity)
+          with the human distribution. Presented at the Conference on Cognitive Computational Neuroscience (CCN)
+          2026 (Li, Li &amp; Chen); manuscript in preparation.
+        </div>
+      </div>
+
+      <div class="project" id="narraters">
+        <h4 class="project-title"><img class="tool-icon" src="imgs/proj/narraters-icon.png" alt="narRaters app icon" width="28" height="28">
+          narRaters: open-source narrative recall processing, with a web interface at every step</h4>
+        <figure class="project-figure">
+          <a href="https://xianneuro.github.io/narRaters/"><img src="imgs/proj/narraters-workflow.svg"
+            alt="narRaters workflow: story side (transcribe, segment events, causal rating) and recall side (correct text, parse clauses, match to story), with human review at every step"></a>
+          <figcaption>The narRaters workflow. Story side: transcribe, segment into events, rate causal links.
+            Recall side, per participant: correct, parse into clauses, match to story events. Every step can be
+            checked and edited in the browser before export.</figcaption>
+        </figure>
+        <div class="project-text">
+          Rich narrative data have always been the field's bottleneck: scoring a ten-minute story's free recall
+          means hundreds of clause-to-event judgments per participant, and rating the causal relations among events
+          grows with the square of story length. narRaters (narrative + raters) is an open-source pipeline and web
+          interface that transcribes recall, segments stories into events, matches recall to events, and rates causal
+          relations, using rule-based methods, local models, or cloud models, with a human review screen after every
+          automated step. It is public on GitHub and PyPI with an archived release:
+          <code>python3 -m pip install narraters</code>, then <code>narraters serve</code>.
+          <div class="project-links">
+            <a href="https://xianneuro.github.io/narRaters/">narRaters project page</a>
+            <a href="https://github.com/xianNeuro/narRaters">narRaters on GitHub</a>
+            <a href="https://pypi.org/project/narraters/">PyPI</a>
+            <a href="https://doi.org/10.5281/zenodo.20486079">archived release (Zenodo)</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="branch" id="earlier">
+        <h3>Related and earlier work</h3>
+        <p class="branch-lead">The methods above were built in projects on perception and brain networks that
+          preceded or ran alongside the three branches.</p>
+      </div>
+
+      <div class="project project-side">
+        <h4 class="project-title">Each viewer's own path: how self-guided exploration of a scene shapes the brain's response to it</h4>
+        <figure class="project-figure project-figure-tall">
+          <img src="imgs/proj/scene.png" alt="A painted diner scene and its segmentation into numbered regions">
+          <figcaption>A painted scene and its segmentation into regions that viewers visit in their own order.</figcaption>
+        </figure>
+        <div class="project-text">
+          Studies of scene perception often use brief presentations of under a second, yet when people freely
+          explore a complex photograph or painting, each person follows their own "exploration path" through the
+          scene, and the history of that path may shape how they understand the next moment. Using fMRI, we tested
+          whether exploration paths predict neural response patterns in the default mode network (DMN), both within
+          and across people. Presented at the Society for Neuroscience (SfN) 2021 (talk and poster).
+        </div>
+      </div>
+
+      <div class="project project-noimg">
+        <h4 class="project-title">Foundations: faces, attention, and brain networks</h4>
+        <div class="project-text">
+          Before the Ph.D. I worked on the behavioral and neural signatures of developmental prosopagnosia (face
+          blindness) with Dr. Joseph DeGutis and Dr. Michael Esterman at Harvard Medical School / VA Boston, on reward and
+          visual attention with event-related potentials (ERPs) and fMRI at Capital Normal University, and on
+          functional and structural brain networks in multiple sclerosis at the University at Buffalo. These
+          collaborations are listed under <a href="#" onclick="openTab(event, 'paper'); return false;">Papers &amp; Preprints</a>.
+        </div>
+      </div>
+
+      <div class="branch" id="tools">
+        <h3>Software and data releases</h3>
+      </div>
+      <ul>
+        <li>
+          <b>Agency and episodic memory: data, code, and stimuli</b> for Li et al. (2026), Nature Communications.
+          Subject-level data for both stories and all conditions, analysis scripts and figure notebooks, story
+          maps and the task demo.
+          <a href="https://github.com/xianNeuro/agency-personalizes-episodic-memory">GitHub</a>;
+          archived release <a href="https://doi.org/10.5281/zenodo.19124153">doi:10.5281/zenodo.19124153</a>.
+        </li>
+        <li>
+          <b>Interruption fMRI dataset and analysis code</b> for Li, Lee &amp; Honey (2026).
+          <a href="https://github.com/xianNeuro/mental_continuity">GitHub</a>;
+          archived release <a href="https://doi.org/10.5281/zenodo.22260085">doi:10.5281/zenodo.22260085</a>.
+        </li>
+        <li>
+          <b>Verbalized spontaneous thought fMRI dataset</b> (Zhang et al., 2026, Scientific Data; co-author).
+          OpenNeuro ds006067.
+        </li>
+        <li>
+          <b>narRaters</b> (see "The instrument" above). <a href="https://xianneuro.github.io/narRaters/">Project page</a>, <a href="https://github.com/xianNeuro/narRaters">GitHub</a> and <a href="https://pypi.org/project/narraters/">PyPI</a>;
+          archived release <a href="https://doi.org/10.5281/zenodo.20486079">doi:10.5281/zenodo.20486079</a>.
+        </li>
+        <li>
+          <b>Causal Rater for Story</b>, a custom GPT for rating causal relations between narrative events.
+          <a href="https://chatgpt.com/g/g-dCYo6ta2J-causal-rater-for-story">Open in ChatGPT</a>.
+        </li>
+      </ul>
+
+      <hr>
+
+      <ul class="tab">
+        <li><a href="#" class="tablinks active" onclick="openTab(event, 'paper')">Papers &amp; Preprints</a></li>
+        <li><a href="#" class="tablinks" onclick="openTab(event, 'talk')">Talks</a></li>
+        <li><a href="#" class="tablinks" onclick="openTab(event, 'poster')">Conference Presentations</a></li>
+      </ul>
+
+      <!-- ===================== PAPERS ===================== -->
+      <div id="paper" class="tabcontent" style="display:block"><br>
+
+        <h4>Preprints and manuscripts in preparation</h4>
+
+        <p>
+          <b>Cortical and hippocampal pathways to mental continuity</b><br>
+          <b>Li, X.</b>, Lee, H., &amp; Honey, C. J. (2026). bioRxiv. Under review.<br>
+          <a href="https://doi.org/10.64898/2026.09.04.749493">preprint</a>,
+          <a href="https://doi.org/10.5281/zenodo.22260085">data and code</a>
+        </p><br>
+
+        <p>
+          <b>Human and LLM alignment in causal reasoning for narrative events and their structural association with human memory</b><br>
+          <b>Li, X.</b>, Li, X., Antony, J. W., &amp; Chen, J. (in preparation).
+        </p><br>
+
+        <h4>Peer-reviewed publications</h4>
+
+        <p>
+          <b>An fMRI dataset of verbalized spontaneous thought with annotated transcripts and self-report trait measures</b><br>
+          Zhang, M., Liu, P. R., Su, H., Zhao, M., <b>Li, X.</b>, Born, S., Lee, Y., Honey, C. J., Chen, J., &amp; Lee, H. (2026).<br>
+          Scientific Data.<br>
+          <a href="https://doi.org/10.1038/s41597-026-08414-6">paper</a>,
+          <a href="https://doi.org/10.64898/2026.05.12.724488">preprint</a>
+        </p><br>
+
+        <p>
+          <b>Interactive narratives reveal the personalizing effect of agency on episodic memory</b><br>
+          <b>Li, X.</b>, Ni, N. K., Born, S. J., Gualano, R. J., Lee, I., Bellana, B., &amp; Chen, J. (2026).<br>
+          Nature Communications, 17, 7272.<br>
+          <a href="https://doi.org/10.1038/s41467-026-73907-2">paper</a>,
+          <a href="https://doi.org/10.31234/osf.io/7evwj">preprint</a>
+        </p><br>
+
+        <p>
+          <b>Left hemisphere abnormalities in face-selective activation and functional connectivity in developmental prosopagnosia</b><br>
+          Campbell, A., <b>Li, X.</b>, Rothlein, D., Esterman, M., &amp; DeGutis, J. (2025).<br>
+          Imaging Neuroscience, 3.
+        </p><br>
+
+        <p>
+          <b>Neural dynamics of spontaneous memory recall and future thinking in the continuous flow of thoughts</b><br>
+          Su, H., <b>Li, X.</b>, Born, S., Honey, C. J., Chen, J., &amp; Lee, H. (2025).<br>
+          Nature Communications, 16, 6433.<br>
+          <a href="https://www.nature.com/articles/s41467-025-61807-w">paper</a>
+        </p><br>
+
+        <p>
+          <b>Effects of congruent emotional contexts during encoding on recognition: An ERPs study</b><br>
+          Xie, M., Han, M., Liu, Z., <b>Li, X.</b>, &amp; Guo, C. (2024).<br>
+          Psychophysiology, 61, e14516.
+        </p><br>
+
+        <p>
+          <b>Investigating the influence of autism spectrum traits on face processing mechanisms in developmental prosopagnosia</b><br>
+          Fry, R., <b>Li, X.</b>, Evans, T. C., Esterman, M., Tanaka, J., &amp; DeGutis, J. (2023).<br>
+          Journal of Autism and Developmental Disorders, 53, 4787–4808.
+        </p><br>
+
+        <p>
+          <b>From encoding to retrieval: Change in level of unitization resolves debate about unitization's effect on associative recognition</b><br>
+          Liu, Z., <b>Li, X.</b>, Li, X., Yuan, J., &amp; Guo, C. (2023).<br>
+          Psychophysiology, 60, e14161.
+        </p><br>
+
+        <p>
+          <b>Functional alteration due to structural damage is network dependent: Insight from multiple sclerosis</b><br>
+          Bartnik, A., Fuchs, T. A., Ashton, K., Kuceyeski, A., <b>Li, X.</b>, Mallory, M., et al. (2023).<br>
+          Cerebral Cortex, 33, 6090–6102.
+        </p><br>
+
+        <p>
+          <b>Not so fast! Response times in the computerized Benton Face Recognition Test may not reflect face recognition ability</b><br>
+          DeGutis, J., <b>Li, X.</b>, Yosef, B., &amp; Mishra, M. V. (2022).<br>
+          Cognitive Neuropsychology, 39, 155–169.
+        </p><br>
+
+        <p>
+          <b>Neural mechanisms of reward-by-cueing interactions: ERP evidence</b><br>
+          <b>Li, X.</b>*, Zhang, M.*, Wu, L., Zhang, Q., &amp; Wei, P. (2021). *equal contribution<br>
+          Frontiers in Human Neuroscience, 15.
+        </p><br>
+
+        <p>
+          <b>Preserved network functional connectivity underlies cognitive reserve in multiple sclerosis</b><br>
+          Fuchs, T. A., Benedict, R. H. B., Bartnik, A., Choudhery, S., <b>Li, X.</b>, et al. (2019).<br>
+          Human Brain Mapping, 40, 5231–5241.
+        </p><br>
+
+        <p>
+          <b>Electrophysiological evidence of encoding in self-referential effect</b><br>
+          Yang, X., Mao, X., Han, M., <b>Li, X.</b>, &amp; Guo, C. (2019).<br>
+          NeuroReport, 30, 901–907.
+        </p><br>
+
+        <p>
+          <b>White matter tract network disruption explains reduced conscientiousness in multiple sclerosis</b><br>
+          Fuchs, T. A., Dwyer, M. G., Kuceyeski, A., Choudhery, S., Carolus, K., <b>Li, X.</b>, et al. (2018).<br>
+          Human Brain Mapping, 39, 3682–3690.
+        </p><br>
+
+        <p>
+          <b>Semantic relationship shared between words: Influence on associative recognition supported by event-related potentials</b><br>
+          Lyu, Y., Wang, Y., Mao, X., <b>Li, X.</b>, &amp; Guo, C. (2018).<br>
+          NeuroReport, 29, 71–78.
+        </p><br>
+
+      </div>
+
+      <!-- ===================== TALKS ===================== -->
+      <div id="talk" class="tabcontent"><br>
+
+        <p class="talk-note">Invited talks on the work described above. Upcoming talks are marked.</p><br>
+        <p><b>Nastase Lab</b> (Dr. Samuel Nastase), University of Southern California (November 2026, upcoming).</p><br>
+        <p><b>Dimsdale-Zucker Lab</b> (Dr. Halle Dimsdale-Zucker), University of California, Riverside (October 2026, upcoming).</p><br>
+        <p><b>Human memory area data blitz</b> (organized by Dr. David Clewett), Department of Psychology, University of California, Los Angeles (October 2026).</p><br>
+        <p><b>Tompary Lab</b> (Dr. Alexa Tompary), Drexel University (September 2026).</p><br>
+        <p><b>Naturalistic Cognition Lab</b> (Dr. Coraline Iordan), University of Rochester (August 2026).</p><br>
+        <p><b>Colloquium</b>, Cognitive Neuroscience program, Ohio State University (April 2026).</p><br>
+        <p><b>Voss Lab and Jacobs Lab</b> (Dr. Joel Voss, Dr. Josh Jacobs), University of Chicago (March 2026).</p><br>
+        <p><b>MemoLab</b> (Dr. Maureen Ritchey), University of California, Los Angeles (March 2026).</p><br>
+        <p><b>Stanford Memory Lab</b> (Dr. Anthony Wagner), Stanford University (February 2026).</p><br>
+        <p><b>Dynamic Perception and Memory Lab</b> (Dr. Chris Baldassano), Columbia University (September 2025).</p><br>
+        <p><b>Princeton Neuroscience Institute seminar</b> (Dr. Kenneth Norman), Princeton University (March 2025).</p><br>
+        <p><b>Decision Neuroscience Lab</b> (Dr. Tobias Donner), University Medical Center Hamburg-Eppendorf (February 2025).</p><br>
+        <p><b>Episodic Memory Group</b> (Dr. Chris Bird), University of Sussex (July 2022).</p><br>
+        <p><b>Invited talk</b>, Vision Sciences Society Annual Meeting (June 2020).</p><br>
+
+      </div>
+
+      <!-- ===================== CONFERENCES ===================== -->
+      <div id="poster" class="tabcontent"><br>
+
+        <p>
+          <b>Cortical and hippocampal pathways to mental continuity</b><br>
+          <b>Li, X.</b>, Lee, H., &amp; Honey, C. J. (2026). Abstract, Society for Neuroscience (SfN) Annual Meeting.
+        </p><br>
+
+        <p>
+          <b>Human and LLM alignment in causal reasoning for narrative events</b><br>
+          <b>Li, X.</b>, Li, X., &amp; Chen, J. (2026). Conference on Cognitive Computational Neuroscience (CCN), New York.
+        </p><br>
+
+        <p>
+          <b>Cognitive and neural origins of persistent experiences</b><br>
+          Kressin Palacios, G., <b>Li, X.</b>, Lai, Y., &amp; Honey, C. J. (2026). CCN, New York. (mentored project)
+        </p><br>
+
+        <p>
+          <b>Automated recall-to-story matching for memory research</b><br>
+          Arekar, D., Kressin Palacios, G., <b>Li, X.</b>, &amp; Chen, J. (2026). CCN, New York. (mentored project)
+        </p><br>
+
+        <p>
+          <b>Two pathways to mental continuity</b><br>
+          <b>Li, X.</b>, &amp; Honey, C. J. (2026). Poster, Context and Episodic Memory Symposium (CEMS), Philadelphia.
+        </p><br>
+
+        <p>
+          <b>Agency personalizes episodic memories</b><br>
+          <b>Li, X.</b>, Ni, N. K., Born, S. J., Gualano, R. J., Lee, I., Bellana, B., &amp; Chen, J. (2025). Poster, SfN, Chicago.
+        </p><br>
+
+        <p>
+          <b>Narrative representations resist interference</b><br>
+          <b>Li, X.</b>, &amp; Honey, C. J. (2025). Poster, SfN, Chicago.
+        </p><br>
+
+        <p>
+          <b>Neural origins of persistent mental content</b><br>
+          Kressin Palacios, G., <b>Li, X.</b>, Lai, Y., &amp; Honey, C. J. (2025). Poster, SfN, Chicago. (mentored project)
+        </p><br>
+
+        <p>
+          <b>Neural representations that resist interference</b><br>
+          <b>Li, X.</b>, &amp; Honey, C. J. (2025). Poster, CCN, Boston.<br>
+          <a href="https://2025.ccneuro.org/abstract_pdf/Li_2025_Neural_representations_resist_interference.pdf">CCN abstract</a>
+        </p><br>
+
+        <p>
+          <b>Agency enhances individuality in memory for narratives</b><br>
+          <b>Li, X.</b>, Ni, N. K., Born, S. J., Gualano, R. J., Lee, I., Bellana, B., &amp; Chen, J. (2024). Talk, CEMS, Philadelphia.
+        </p><br>
+
+        <p>
+          <b>Agency personalizes naturalistic event memories</b><br>
+          <b>Li, X.</b>, Ni, N. K., Born, S., Gualano, R. J., Lee, I., Bellana, B., &amp; Chen, J. (2024). Poster, SfN, Chicago.
+        </p><br>
+
+        <p>
+          <b>The role of agency in memory for narratives</b><br>
+          <b>Li, X.</b>, Ni, N. K., Born, S., Gualano, R., &amp; Chen, J. (2022). Poster, CCN, San Francisco.
+        </p><br>
+
+        <p>
+          <b>The role of agency in memory for narratives: A choose-your-own-adventure paradigm</b><br>
+          <b>Li, X.</b>, Ni, N. K., Born, S., Gualano, R., &amp; Chen, J. (2022). Talk and poster, CEMS, Philadelphia.
+        </p><br>
+
+        <p>
+          <b>Exploration path trajectory during self-guided viewing of complex photographs and paintings predicts brain activity patterns in the default network</b><br>
+          <b>Li, X.</b>, Su, H., Born, S., Chen, J., &amp; Honey, C. J. (2021). Talk and poster, SfN, Chicago.
+        </p><br>
+
+        <p>
+          <b>The role of agency in memory for narratives: A choose-your-own-adventure paradigm</b><br>
+          <b>Li, X.</b>, Ni, N. K., Born, S., Gualano, R., &amp; Chen, J. (2021). Poster, CEMS, Philadelphia.
+        </p><br>
+
+        <p>
+          <b>Deficient functional MRI selectivity and connectivity in developmental prosopagnosia is specific to face regions</b><br>
+          <b>Li, X.</b>, Arizpe, J., Rothlein, D., Esterman, M., &amp; DeGutis, J. (2020). Journal of Vision, 20(11), 827 (Vision Sciences Society).
+        </p><br>
+
+        <p>
+          <b>Faces are no object: Normal novel object performance in developmental prosopagnosia</b><br>
+          Fry, R., <b>Li, X.</b>, Wilmer, J., &amp; DeGutis, J. (2020). Journal of Vision, 20(11), 1231 (Vision Sciences Society).<br>
+          <a href="https://doi.org/10.1167/jov.20.11.1231">abstract</a>
+        </p><br>
+
+        <p>
+          <b>Alteration of resting-state functional connectivity in response to structural disruption differs between well-established functional networks in multiple sclerosis</b><br>
+          Bartnik, A., Fuchs, T. A., Ashton, K., <b>Li, X.</b>, Mallory, M., Oship, D., et al. (2020). Poster, American Academy of Neurology (AAN) Annual Meeting, Toronto.
+        </p><br>
+
+        <p>
+          <b>Preservation of functional connectivity moderates the impact of white matter tract disruption on cognition in multiple sclerosis</b><br>
+          Fuchs, T. A., Benedict, R. H. B., Choudhery, S., <b>Li, X.</b>, Carolus, K., Mallory, M., et al. (2018). Poster, AAN Annual Meeting, Los Angeles.
+        </p><br>
+
+      </div>
+
+    </section>
+
+  </div>
+  <script src="javascripts/scale.fix.js"></script>
+</body>
+</html>
