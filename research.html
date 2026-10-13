@@ -9,6 +9,17 @@
   <meta name="description" content="Research of Xian Li: how memory, choice, interruption and feeling shape naturalistic experience; the choose-your-own-adventure paradigm; and narRaters, the open-source narrative recall processing tool (github.com/xianNeuro/narRaters).">
   <link rel="stylesheet" href="stylesheets/styles.css">
   <meta name="viewport" content="width=device-width">
+  <link rel="canonical" href="https://xian-li.com/research.html">
+  <link rel="icon" href="imgs/logo/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="imgs/logo/favicon-48.png" type="image/png" sizes="48x48">
+  <link rel="icon" href="imgs/logo/favicon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="imgs/logo/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Research | Xian Li">
+  <meta property="og:description" content="Research of Xian Li: how memory, choice, interruption and feeling shape naturalistic experience; the choose-your-own-adventure paradigm; and narRaters, the open-source narrative recall processing tool.">
+  <meta property="og:url" content="https://xian-li.com/research.html">
+  <meta property="og:image" content="https://xian-li.com/imgs/me/xian-profile.jpg">
+  <meta name="twitter:card" content="summary">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -37,7 +48,7 @@
       <p class="view"><h4>Research</h4></p>
       <p class="view"><h4><a href="teaching.html">Teaching</a></h4></p>
       <p class="view"><h4><a href="demo.html">Demo</a></h4></p>
-      <p class="view"><a href="docs/CV_XianLi_2026-10-12_v6.pdf" target="_blank">CV (PDF)</a></p>
+      <p class="view"><a href="docs/CV_XianLi_2026-10-13_v7.pdf" target="_blank">CV (PDF)</a></p>
       <br><br>
       <p class="view icon-links">
         <a href="https://scholar.google.com/citations?user=cab6cSQAAAAJ&hl=en&oi=ao" title="Google Scholar">
@@ -57,25 +68,27 @@
       <h3>Research</h3>
       <p class="lede">How do meaning and feeling emerge from the experiences we live through?</p>
       <p>
-        Lived experience is not a sequence of isolated trials. It is continuous, it accumulates over a lifetime,
-        we steer it by the choices we make, and we constantly leave it and return to it. I study the emergent
-        properties of naturalistic cognition: the memories, interpretations, and feelings that arise when a mind
-        with a history meets events as they unfold. Memory research has learned to study stories and films instead
-        of word lists, but its paradigms still leave out three things that make experience lived: the person
-        chooses, the person is interrupted, and the person feels. My program puts them back.
+        Lived experience is not a sequence of isolated trials. It unfolds continuously, accumulates over a lifetime,
+        and is shaped by our choices and punctuated by interruptions. I study the emergent properties of
+        naturalistic cognition: the memories, interpretations, and feelings that arise when a mind with a
+        history meets events as they unfold. Memory research increasingly uses stories and films, yet many
+        paradigms still overlook three defining features of lived experience: we actively shape its course, we
+        continually navigate internal and external interruptions, and our feelings reflect both the present
+        moment and our past. My research brings these features together to understand how cognitive and neural
+        processes support everyday life.
       </p>
       <br>
       <p>
-        The three branches below follow from one another. Choosing what happens next personalizes memory, which
-        makes memory look less like a record and more like a scaffold built around the person. A scaffold built
-        while events unfold has to survive the interruptions that fill every day, and the brain holds it in a form
-        that resists interference. And a scaffold, unlike a record, should shape how new events feel, which is the
-        question of my postdoctoral work. My lab uses three instruments together: naturalistic experiments
-        in which people read, listen to, or choose their way through stories; functional magnetic resonance imaging
-        (fMRI) of the default mode network, where narrative context lives at the timescale of minutes; and large
-        language models (LLMs), as annotators of experience and as a second kind of comprehender. Whether human
-        memory is a stored record or a constructed, personal scaffold also decides what AI systems that read,
-        remember, and personalize should imitate, and what they will not capture on their own.
+        The three branches below build on one another. Choosing what happens next personalizes memory, suggesting that
+        memory functions as more than a record: it is a scaffold built around the person. As events unfold,
+        that scaffold must survive the interruptions of everyday life, raising the question of how the brain
+        preserves it against interference. That same scaffold may also shape how new events feel—a question at
+        the heart of my postdoctoral work. I combine naturalistic experiments in which people read, listen to,
+        or choose their way through stories with functional magnetic resonance imaging (fMRI) and large
+        language models (LLMs) to study how experience takes shape over time. Understanding memory as a
+        constructed, personal scaffold also has implications for AI: it helps clarify what systems that read,
+        remember, and personalize should emulate about human cognition, and what they may not capture on their
+        own.
       </p>
 
       <div class="branch" id="agency">
@@ -91,19 +104,15 @@
           <figcaption>Two readers' paths (red and blue) through the branching graph of one adventure story.</figcaption>
         </figure>
         <div class="project-text">
-          To study agency in a naturalistic setting we built the choose-your-own-adventure (CYOA) paradigm:
-          a branching story presented a few sentences at a time, in which readers choose what happens next.
-          Comparing readers who had full, partial, or no control over the path of the same story, we found that
-          agency personalizes episodic memory: readers who chose recalled more idiosyncratic combinations of the
-          same events, and their memories were less predictable from generic sentence embeddings, rather than
-          simply better or worse. Choice did not add memory; it moved memory away from the space that a model of
-          everyone's text would predict, and toward the person. That makes memory look less like a record and more like
-          a scaffold built around the individual, and it raises the question of the next branch: how is that scaffold
-          held when experience is interrupted?
-          <br><b>Next:</b> an fMRI version of the paradigm, for which the stimuli and pipelines exist, will test whether agency
-          changes how the default mode network represents identical events; a parallel study will treat
-          language-model agents as subjects that choose their own path and recall the story, to ask whether a system
-          with agency but no body and no stakes shows the same reorganization.
+          To study agency in a naturalistic setting we built the choose-your-own-adventure (CYOA) paradigm: a branching
+          story presented a few sentences at a time, in which readers choose what happens next. Comparing
+          readers who had full, partial, or no control over the path of the same story, we found that agency
+          personalizes episodic memory: readers who chose recalled more idiosyncratic combinations of the same
+          events, and their memories were less predictable from generic sentence embeddings, rather than
+          simply better or worse. Choice did not add memory; it moved memory away from the space that a model
+          of everyone's text would predict, and toward the person. That makes memory look less like a record
+          and more like a scaffold built around the individual, and it raises the question of the next branch:
+          how is that scaffold held when experience is interrupted?
           <div class="project-links">
             <a href="https://doi.org/10.1038/s41467-026-73907-2">paper (Nature Communications, 2026)</a>
             <a href="https://doi.org/10.31234/osf.io/7evwj">preprint</a>
@@ -128,22 +137,15 @@
         </figure>
         <div class="project-text">
           Seventy-three adults listened to fourteen-minute stories interrupted after every forty seconds by silent
-          pauses or by a competing theory-of-mind task, or heard scrambled controls. Using fMRI, we asked how the
-          brain keeps prior mental context available across interruptions. Two pathways emerged. Hippocampal
-          activity rose at each interruption onset, and the size of that rise predicted later recall, a signature
-          of indexing the epoch just ended. Independently, posterior medial cortex carried the interrupted
-          narrative as a reliable, gradually evolving pattern, an "episodic background" that persisted through the
-          pauses and even through the competing task. The persisting cortical pattern
-          was not a copy of the story pattern that preceded it: it was inverted, and the degree of inversion predicted
-          how well it persisted. If a many-minute mental context is protected by transformation rather than by
-          rehearsal, then continuity is a representational format, not an act of will.
-          <br><b>Next:</b> a large online study of interruption and resumption with a model-subject arm, whose stimuli,
-          pipelines, and archived datasets already exist; then manipulate interruption length and content
-          parametrically, image the hippocampus and posterior medial cortex at high resolution to separate the two
-          pathways, and ask whether the same protective transformation appears when the interruption is
-          self-generated, using the think-aloud paradigm below. The experiments
-          have a machine counterpart: transformers hold context by keeping it in a window, and we can ask whether
-          any system that must resume after interference converges on a transformed code.
+          pauses or by a competing theory-of-mind task, or heard scrambled controls. Using fMRI, we asked how
+          the brain keeps prior mental context available across interruptions. Two pathways emerged.
+          Hippocampal activity rose at each interruption onset, and the size of that rise predicted later
+          recall, a signature of indexing the epoch just ended. Independently, posterior medial cortex carried
+          the interrupted narrative as a reliable, gradually evolving pattern, an "episodic background" that
+          persisted through the pauses and even through the competing task. The persisting cortical pattern
+          was not a copy of the story pattern that preceded it: it was inverted, and the degree of inversion
+          predicted how well it persisted. If a many-minute mental context is protected by transformation
+          rather than by rehearsal, then continuity is a representational format, not an act of will.
           <div class="project-links">
             <a href="https://doi.org/10.64898/2026.09.04.749493">preprint (bioRxiv, 2026)</a>
             <a href="https://doi.org/10.5281/zenodo.22260085">data and code</a>
@@ -184,47 +186,17 @@
           October 2026.</p>
       </div>
 
-      <div class="project">
-        <h4 class="project-title">Feeling the story: how memory and prediction give rise to emotion as events unfold</h4>
-        <figure class="project-figure">
-          <img src="imgs/proj/feeling-crossover.svg" alt="Crossover design: two contexts crossed with two situations; each context is negative for one situation and neutral for the other, so any emotion that later emerges must come from the conjunction that memory supplies">
-          <figcaption>The crossover design: no context and no situation is negative on its own, so emotion can arise
-            only from the pairing that memory supplies.</figcaption>
-        </figure>
-        <div class="project-text">
-          During my doctoral work I designed a paradigm that separates the emotion of a scene from the scene.
-          Encoding crosses two contexts with two situations so that each context is negative for one situation and
-          neutral for the other. Every context and every situation appears in both affective roles, so any emotion
-          that later emerges can come only from the conjunction that memory supplies. The postdoctoral work carries
-          this crossover into naturalistic social scenes: the same ambiguous scene will be encoded under different
-          installed back-stories; hippocampal and ventromedial prefrontal reinstatement of the back-story will be
-          tested as the mediator of the emotion the scene then evokes; and inter-subject pattern analyses will show
-          whether people who share a memory converge on the same interpretation. As an independent investigator I
-          will ask three things this design makes askable for the first time. Does
-          reinstated context determine the category of felt emotion, not only its intensity? Does the default mode
-          network's role across memory, social, and affective processing reflect one principle, long-timescale
-          situation-model building? And do shared memories, rather than shared traits, drive the neural alignment
-          between people who read the same scene the same way? The stakes reach beyond theory: emotion that is
-          constructed from memory is emotion that memory can change, which is the premise of every memory-based
-          clinical intervention. The design is set; the data are not yet collected.
-        </div>
+      <div class="project project-noimg">
+        <h4 class="project-title">To be continued…</h4>
       </div>
 
-      <div class="branch" id="first-semester">
-        <h3>Where the lab starts</h3>
-        <p class="branch-lead">Three projects start in the first semester: the fMRI choose-your-own-adventure study
-          (branch 1) and a large online study of interruption and resumption with a model-subject arm (branch 2),
-          whose stimuli, pipelines, and archived datasets already exist, and the naturalistic affective crossover
-          (branch 3), whose design and stimuli will be carried over from the postdoctoral work. All three use the
-          instrument described next.</p>
-      </div>
 
       <div class="branch" id="models">
-        <h3>The instrument: people and language models as subjects of the same science</h3>
-        <p class="branch-lead">The three branches share a method that did not exist five years ago. Language
-          models can annotate narrative experience at scale, and they can be studied as a second kind of
-          comprehender. Where models and people agree, naturalistic memory research gains tools that scale by an
-          order of magnitude; where they diverge, the divergence maps what human comprehension adds.</p>
+        <h3>The instrument: humans and LLMs as subjects of the same science</h3>
+        <p class="branch-lead">The three branches share a method that did not exist five years ago. LLMs can annotate narrative experience at
+          scale, and they can be studied as a second kind of comprehender. Where models and people agree,
+          naturalistic memory research gains tools that scale by an order of magnitude; where they diverge,
+          the divergence maps what human comprehension adds.</p>
       </div>
 
       <div class="project project-side">
@@ -295,7 +267,7 @@
         <h4 class="project-title">Foundations: faces, attention, and brain networks</h4>
         <div class="project-text">
           Before the Ph.D. I worked on the behavioral and neural signatures of developmental prosopagnosia (face
-          blindness) with Dr. Joseph DeGutis and Dr. Michael Esterman at Harvard Medical School / VA Boston, on reward and
+          blindness) with Dr. Joseph DeGutis and Dr. Michael Esterman at Harvard Medical School, on reward and
           visual attention with event-related potentials (ERPs) and fMRI at Capital Normal University, and on
           functional and structural brain networks in multiple sclerosis at the University at Buffalo. These
           collaborations are listed under <a href="#" onclick="openTab(event, 'paper'); return false;">Papers &amp; Preprints</a>.
@@ -453,9 +425,6 @@
       <!-- ===================== TALKS ===================== -->
       <div id="talk" class="tabcontent"><br>
 
-        <p class="talk-note">Invited talks on the work described above. Upcoming talks are marked.</p><br>
-        <p><b>Nastase Lab</b> (Dr. Samuel Nastase), University of Southern California (November 2026, upcoming).</p><br>
-        <p><b>Dimsdale-Zucker Lab</b> (Dr. Halle Dimsdale-Zucker), University of California, Riverside (October 2026, upcoming).</p><br>
         <p><b>Human memory area data blitz</b> (organized by Dr. David Clewett), Department of Psychology, University of California, Los Angeles (October 2026).</p><br>
         <p><b>Tompary Lab</b> (Dr. Alexa Tompary), Drexel University (September 2026).</p><br>
         <p><b>Naturalistic Cognition Lab</b> (Dr. Coraline Iordan), University of Rochester (August 2026).</p><br>
