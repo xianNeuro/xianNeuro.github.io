@@ -30,3 +30,21 @@ function openTab(evt, tabName) {
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
 }
+
+// A link such as research.html#talk opens that tab and scrolls to it (used by the quick links on the Home page).
+function openTabFromHash() {
+    var name = (window.location.hash || "").replace("#", "");
+    var target = name ? document.getElementById(name) : null;
+    if (!target || (" " + target.className + " ").indexOf(" tabcontent ") < 0) { return; }
+    var i, tabcontent = document.getElementsByClassName("tabcontent"), tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tabcontent.length; i++) { tabcontent[i].style.display = "none"; }
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+        if ((tablinks[i].getAttribute("onclick") || "").indexOf("'" + name + "'") >= 0) { tablinks[i].className += " active"; }
+    }
+    target.style.display = "block";
+    var bar = document.querySelector("ul.tab");
+    if (bar && bar.scrollIntoView) { bar.scrollIntoView(); }
+}
+window.addEventListener("load", openTabFromHash);
+window.addEventListener("hashchange", openTabFromHash);
